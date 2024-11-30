@@ -181,6 +181,7 @@ module-sets:
       - github.com/open-telemetry/opentelemetry-collector-contrib/processor/metricstransformprocessor
       - github.com/open-telemetry/opentelemetry-collector-contrib/processor/probabilisticsamplerprocessor
       - github.com/open-telemetry/opentelemetry-collector-contrib/processor/redactionprocessor
+      - github.com/open-telemetry/opentelemetry-collector-contrib/processor/presidioredactionprocessor
       - github.com/open-telemetry/opentelemetry-collector-contrib/processor/remotetapprocessor
       - github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor
       - github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor
@@ -225,7 +226,7 @@ module-sets:
       - github.com/open-telemetry/opentelemetry-collector-contrib/receiver/googlecloudspannerreceiver
       - github.com/open-telemetry/opentelemetry-collector-contrib/receiver/haproxyreceiver
       - github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver
-      - github.com/open-telemetry/opentelemetry-collector-contrib/receiver/huaweicloudcesreceiver      
+      - github.com/open-telemetry/opentelemetry-collector-contrib/receiver/huaweicloudcesreceiver
       - github.com/open-telemetry/opentelemetry-collector-contrib/receiver/httpcheckreceiver
       - github.com/open-telemetry/opentelemetry-collector-contrib/receiver/iisreceiver
       - github.com/open-telemetry/opentelemetry-collector-contrib/receiver/influxdbreceiver
@@ -293,6 +294,7 @@ module-sets:
       - github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zookeeperreceiver
       - github.com/open-telemetry/opentelemetry-collector-contrib/testbed
       - github.com/open-telemetry/opentelemetry-collector-contrib/testbed/mockdatasenders/mockdatadogagentexporter
+      -
 
 excluded-modules:
   - github.com/open-telemetry/opentelemetry-collector-contrib/cmd/otelcontribcol

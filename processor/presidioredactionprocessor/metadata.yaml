@@ -1,4 +1,4 @@
-type: redaction
+type: presidio_redaction
 
 status:
   class: processor

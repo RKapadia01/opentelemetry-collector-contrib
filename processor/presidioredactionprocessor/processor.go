@@ -24,8 +24,7 @@ func newPresidioRedaction(_ context.Context, cfg *Config, logger *zap.Logger) *p
 	return &presidioRedaction{
 		config: cfg,
 		logger: logger,
-	}
-}
+	},
 
 func (s *presidioRedaction) processTraces(ctx context.Context, batch ptrace.Traces) (ptrace.Traces, error) {
 	for i := 0; i < batch.ResourceSpans().Len(); i++ {

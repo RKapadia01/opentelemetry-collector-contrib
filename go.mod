@@ -1,4 +1,4 @@
-module github.com/open-telemetry/opentelemetry-collector-contrib
+module github.com/open-telemetry/opentelemetry-collector-contrib/processor/presidioredactionprocesso
 
 // NOTE:
 // This go.mod is NOT used to build any official binary.

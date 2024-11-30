@@ -7,7 +7,7 @@ import (
 )
 
 var (
-	Type      = component.MustNewType("redaction")
+	Type      = component.MustNewType("presidio_redaction")
 	ScopeName = "github.com/open-telemetry/opentelemetry-collector-contrib/processor/presidioredactionprocessor"
 )
 
