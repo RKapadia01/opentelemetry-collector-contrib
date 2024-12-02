@@ -6,7 +6,8 @@ receivers:
 
 processors:
   presidio_redaction:
-    presidio_endpoint: http://localhost:8080/anonymize
+    anonymizer_endpoint: http://localhost:5001/anonymize
+    analyzer_endpoint: http://localhost:5002/analyze
 
 exporters:
   debug:

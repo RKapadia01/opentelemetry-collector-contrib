@@ -16,7 +16,6 @@ import (
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/presidioredactionprocessor/internal/metadata"
 )
 
-// NewFactory creates a factory for the redaction processor.
 func NewFactory() processor.Factory {
 	return processor.NewFactory(
 		metadata.Type,
@@ -30,7 +29,6 @@ func createDefaultConfig() component.Config {
 	return &Config{}
 }
 
-// createTracesProcessor creates an instance of redaction for processing traces
 func createTracesProcessor(
 	ctx context.Context,
 	set processor.Settings,

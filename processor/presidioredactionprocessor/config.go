@@ -4,5 +4,6 @@
 package presidioredactionprocessor // import "github.com/open-telemetry/opentelemetry-collector-contrib/processor/redactionprocessor"
 
 type Config struct {
-	PresidioEndpoint string `mapstructure:"presidio_endpoint"`
+	AnalyzerEndpoint   string `mapstructure:"analyzer_endpoint"`
+	AnonymizerEndpoint string `mapstructure:"anonymizer_endpoint"`
 }
