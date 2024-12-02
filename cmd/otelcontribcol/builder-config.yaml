@@ -122,6 +122,7 @@ processors:
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/spanprocessor v0.114.0
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/tailsamplingprocessor v0.114.0
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor v0.114.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/presidioredactionprocessor v0.114.0
 
 receivers:
   - gomod: go.opentelemetry.io/collector/receiver/nopreceiver v0.114.0
@@ -436,6 +437,7 @@ replaces:
   - github.com/open-telemetry/opentelemetry-collector-contrib/exporter/honeycombmarkerexporter => ../../exporter/honeycombmarkerexporter
   - github.com/open-telemetry/opentelemetry-collector-contrib/receiver/otlpjsonfilereceiver => ../../receiver/otlpjsonfilereceiver
   - github.com/open-telemetry/opentelemetry-collector-contrib/processor/redactionprocessor => ../../processor/redactionprocessor
+  - github.com/open-telemetry/opentelemetry-collector-contrib/processor/presidioredactionprocessor => ../../processor/presidioredactionprocessor
   - github.com/open-telemetry/opentelemetry-collector-contrib/extension/jaegerremotesampling => ../../extension/jaegerremotesampling
   - github.com/open-telemetry/opentelemetry-collector-contrib/receiver/sshcheckreceiver => ../../receiver/sshcheckreceiver
   - github.com/open-telemetry/opentelemetry-collector-contrib/receiver/datadogreceiver => ../../receiver/datadogreceiver

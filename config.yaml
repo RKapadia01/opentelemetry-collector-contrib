@@ -6,15 +6,19 @@ receivers:
 
 processors:
   presidio_redaction:
-    presidio_endpoint: http://localhost:8080
+    presidio_endpoint: http://localhost:8080/anonymize
 
 exporters:
-  logging:
-    loglevel: debug
+  debug:
+    verbosity: detailed
 
 service:
   pipelines:
     traces:
+      receivers: [otlp]
+      processors: [presidio_redaction]
+      exporters: [debug]
+    logs:
       receivers: [otlp]
       processors: [presidio_redaction]
       exporters: [debug]

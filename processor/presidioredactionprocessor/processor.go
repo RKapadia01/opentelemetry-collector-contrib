@@ -11,6 +11,7 @@ import (
 	"net/http"
 
 	"go.opentelemetry.io/collector/pdata/pcommon"
+	"go.opentelemetry.io/collector/pdata/plog"
 	"go.opentelemetry.io/collector/pdata/ptrace"
 	"go.uber.org/zap"
 )
@@ -24,7 +25,8 @@ func newPresidioRedaction(_ context.Context, cfg *Config, logger *zap.Logger) *p
 	return &presidioRedaction{
 		config: cfg,
 		logger: logger,
-	},
+	}
+}
 
 func (s *presidioRedaction) processTraces(ctx context.Context, batch ptrace.Traces) (ptrace.Traces, error) {
 	for i := 0; i < batch.ResourceSpans().Len(); i++ {
@@ -35,10 +37,37 @@ func (s *presidioRedaction) processTraces(ctx context.Context, batch ptrace.Trac
 	return batch, nil
 }
 
+func (s *presidioRedaction) processLogs(ctx context.Context, logs plog.Logs) (plog.Logs, error) {
+	for i := 0; i < logs.ResourceLogs().Len(); i++ {
+		rl := logs.ResourceLogs().At(i)
+		s.processResourceLog(ctx, rl)
+	}
+
+	return logs, nil
+}
+
+func (s *presidioRedaction) processResourceLog(ctx context.Context, rl plog.ResourceLogs) {
+	for j := 0; j < rl.ScopeLogs().Len(); j++ {
+		ils := rl.ScopeLogs().At(j)
+		for k := 0; k < ils.LogRecords().Len(); k++ {
+			log := ils.LogRecords().At(k)
+
+			s.redactAttr(ctx, log.Attributes())
+
+			redactedBody, err := s.callPresidioService(ctx, log.Body().Str())
+			if err != nil {
+				s.logger.Error("Error calling presidio service", zap.Error(err))
+				continue
+			}
+
+			log.Body().SetStr(redactedBody)
+		}
+	}
+}
+
 func (s *presidioRedaction) processResourceSpan(ctx context.Context, rs ptrace.ResourceSpans) {
-	// Redact the resource span attributes if necessary?
-	// rsAttrs := rs.Resource().Attributes()
-	// s.redactAttr(ctx, rsAttrs)
+	rsAttrs := rs.Resource().Attributes()
+	s.redactAttr(ctx, rsAttrs)
 
 	for j := 0; j < rs.ScopeSpans().Len(); j++ {
 		ils := rs.ScopeSpans().At(j)
@@ -46,7 +75,6 @@ func (s *presidioRedaction) processResourceSpan(ctx context.Context, rs ptrace.R
 			span := ils.Spans().At(k)
 			spanAttrs := span.Attributes()
 
-			// Redact the span attributes if necessary
 			s.redactAttr(ctx, spanAttrs)
 		}
 	}
